@@ -5,35 +5,34 @@ class ProfilePage extends StatelessWidget {
   final VoidCallback? onHomeTap;
   const ProfilePage({super.key, this.onHomeTap});
 
-  // Data masing-masing anggota kelompok
+  // Data anggota kelompok
   final List<Map<String, String>> teamMembers = const [
     {
       'Nama': 'Sharon Tabitha Santoso',
       'NIM': '21120124120016',
-      'Foto': 'https://via.placeholder.com/150',
+      'Foto': 'assets/Sharon.jpeg',
       'Deskripsi': 'Kelompok 6',
     },
     {
       'Nama': 'Nurul Kumala',
       'NIM': '21120124140113',
-      'Foto': 'https://via.placeholder.com/150',
+      'Foto': 'assets/Nurul.jpeg',
       'Deskripsi': 'Kelompok 6',
     },
     {
       'Nama': 'Dinda Azra Ariefah',
       'NIM': '21120124120039',
-      'Foto': 'https://via.placeholder.com/150',
+      'Foto': 'assets/Dinda.jpeg',
       'Deskripsi': 'Kelompok 6',
     },
     {
       'Nama': 'Bernard Ivan Salim',
       'NIM': '21120123130000',
-      'Foto': 'https://via.placeholder.com/150',
+      'Foto': 'assets/Bernard.jpeg',
       'Deskripsi': 'Kelompok 6',
     },
   ];
 
-  // Fungsi untuk menampilkan info detail anggota saat diklik
   void _showMemberDetail(BuildContext context, Map<String, String> member) {
     showModalBottomSheet(
       context: context,
@@ -46,11 +45,25 @@ class ProfilePage extends StatelessWidget {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              CircleAvatar(
-                radius: 50,
-                backgroundImage: NetworkImage(member['Foto']!),
-                onBackgroundImageError: (_, __) {},
-                child: const Icon(Icons.person, size: 50),
+              ClipRRect(
+                child: Image.asset(
+                  member['Foto']!,
+                  width: 100,
+                  height: 100,
+                  fit: BoxFit.cover,
+                  errorBuilder: (context, error, stackTrace) {
+                    return Container(
+                      width: 100,
+                      height: 100,
+                      color: Colors.grey[300],
+                      child: const Icon(
+                        Icons.person,
+                        size: 50,
+                        color: Colors.grey,
+                      ),
+                    );
+                  },
+                ),
               ),
               const SizedBox(height: 16),
               Text(
@@ -136,11 +149,25 @@ class ProfilePage extends StatelessWidget {
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          CircleAvatar(
-                            radius: 42,
-                            backgroundImage: NetworkImage(member['Foto']!),
-                            onBackgroundImageError: (_, __) {},
-                            child: const Icon(Icons.person, size: 40),
+                          ClipRRect(
+                            child: Image.asset(
+                              member['Foto']!,
+                              width: 80,
+                              height: 80,
+                              fit: BoxFit.cover,
+                              errorBuilder: (context, error, stackTrace) {
+                                return Container(
+                                  width: 80,
+                                  height: 80,
+                                  color: Colors.grey[300],
+                                  child: const Icon(
+                                    Icons.person,
+                                    size: 40,
+                                    color: Colors.grey,
+                                  ),
+                                );
+                              },
+                            ),
                           ),
                           const SizedBox(height: 12),
                           Text(
